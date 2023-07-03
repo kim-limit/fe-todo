@@ -3,6 +3,7 @@
 ## 실행 방법
 
 ```
+yarn install
 node grade.js
 ```
 
