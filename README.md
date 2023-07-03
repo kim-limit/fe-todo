@@ -1,5 +1,11 @@
 # FE-TODO
 
+## 실행 방법
+
+```
+node grade.js
+```
+
 ## 기능 요구사항
 
     상태: todo, doing, done
@@ -19,6 +25,8 @@
 - [ ] update
   - id, status 두가지 입력받아서 상태를 변경
   - 만약 없는 id나 없는 status(todo, doing, done) 인경우 예외 처리
+- [ ] exit
+  - 종료
 
 ### 출력 기능
 
