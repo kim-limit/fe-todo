@@ -26,12 +26,12 @@ node grade.js
 - [ ] update
   - id, status 두가지 입력받아서 상태를 변경
   - 만약 없는 id나 없는 status(todo, doing, done) 인경우 예외 처리
-- [ ] exit
+- [x] exit
   - 종료
 
 ### 출력 기능
 
-- [ ] 현재 상태 출력
+- [x] 현재 상태 출력
   - `ex) 현재상태 :  todo: n개, doing: m개, done: k개`
 - [ ] show$todo 인 경우
   - `ex) todo리스트 :  총 n건 : '{name}, {uuid}번' , '{name}, {uuid}번', '{name}, {uuid}번'`

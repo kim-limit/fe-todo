@@ -1,4 +1,4 @@
-const { STATUS } = require("./constant");
+const { COMMAND, STATUS, SHOW_SUB_COMMAND, ERROR_MSG } = require("./constant");
 const { validate } = require("./utils");
 
 /**
@@ -13,14 +13,37 @@ const { validate } = require("./utils");
 class Commander {
   /** @type {TodoItem[]} */
   #todos;
+  #counts;
+  #totalCount;
 
-  constrcutor() {
+  constructor() {
     this.#todos = [];
+    this.#totalCount = 0;
+    this.#counts = {
+      [STATUS.TODO]: 0,
+      [STATUS.DOING]: 0,
+      [STATUS.DONE]: 0,
+    };
   }
 
   play(command) {
-    const meta = validate(command);
-    console.log(meta);
+    const { type, args } = validate(command);
+    console.log(type, args);
+
+    switch (type) {
+      case COMMAND.SHOW:
+        this.#show(args[0]);
+        break;
+      case COMMAND.ADD:
+        this.#add(args[0], args[1]);
+        break;
+      case COMMAND.UPDATE:
+        this.#update(args[0], args[1]);
+        break;
+      case COMMAND.DELETE:
+        this.#delete(args[0]);
+        break;
+    }
   }
 
   #add(name, tags) {}
@@ -29,9 +52,28 @@ class Commander {
 
   #delete(id) {}
 
-  #showAll() {}
+  #show(subCommand) {
+    const uppered = subCommand.toUpperCase();
+    if (!SHOW_SUB_COMMAND[uppered]) {
+      throw Error(ERROR_MSG.NOT_EXIST_SUB_COMMAND);
+    }
 
-  #showTodo() {}
+    if (uppered === SHOW_SUB_COMMAND.ALL) {
+      this.#printAll();
+      return;
+    }
+
+    this.#printTodo();
+  }
+
+  #printAll() {
+    const { TODO, DOING, DONE } = this.#counts;
+    console.log(
+      `현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개`
+    );
+  }
+
+  #printTodo() {}
 }
 
 module.exports = Commander;
