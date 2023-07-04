@@ -3,26 +3,27 @@ const freeze = (object) => {
 };
 
 const STATUS = freeze({
-  TODO: "todo",
-  DOING: "doing",
-  DONE: "done",
+  TODO: "TODO",
+  DOING: "DOING",
+  DONE: "DONE",
 });
 
 const COMMAND = freeze({
-  SHOW: "show",
-  ADD: "add",
-  DELETE: "delete",
-  UPDATE: "update",
+  SHOW: "SHOW",
+  ADD: "ADD",
+  DELETE: "DELETE",
+  UPDATE: "UPDATE",
 });
 
-const SUB_COMMAND = freeze({
-  SHOW_ALL: "all",
-  SHOW_TODO: "todo",
+const SHOW_SUB_COMMAND = freeze({
+  ALL: "ALL",
+  TODO: "TODO",
 });
 
 const ERROR_MSG = freeze({
   NOT_ENOUGH_ARGS: "인자가 충분하지 않습니다",
   NOT_EXIST_COMMAND: "없는 명령어 입니다.",
+  NOT_EXIST_SUB_COMMAND: "show는 all과 todo만 사용가능합니다.",
   NOT_EXIST_ID: "없는 id 입니다.",
   NOT_EXIST_STATUS: "없는 상태입니다.",
 });
@@ -30,6 +31,6 @@ const ERROR_MSG = freeze({
 module.exports = {
   STATUS,
   COMMAND,
-  SUB_COMMAND,
+  SHOW_SUB_COMMAND,
   ERROR_MSG,
 };
