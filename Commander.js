@@ -7,30 +7,16 @@ const { validate } = require("./utils");
  * @property {string} name - 이름
  * @property {string[]} tags - 태그 리스트  tags: string[]
  * @property {STATUS} status - 상태
- * @property {string} id - uuid
  */
 
 class Commander {
-  /** @type {TodoItem[]} */
+  /** @type {Map<string,TodoItem} */
   #todos;
   #counts;
   #totalCount;
 
   constructor() {
-    this.#todos = [
-      {
-        name: "자바스크립트 공부하기",
-        tags: ["programming", "javascript"],
-        status: "todo",
-        id: 12123123,
-      },
-      {
-        name: "그림 그리기",
-        tags: ["picture", "favorite"],
-        status: "doing",
-        id: 312323,
-      },
-    ];
+    this.#todos = new Map();
     this.#totalCount = 0;
     this.#counts = {
       [STATUS.TODO]: 0,
@@ -94,6 +80,15 @@ class Commander {
         return acc + `${idx}. ${name} (${id}번)\n`;
       }, `todo리스트 : 총 ${this.#totalCount}건\n`)
     );
+  }
+
+  #checkIdExist(id) {
+    return this.#todos.has(id);
+  }
+
+  #updateCount(status, offset) {
+    this.#counts[status] += offset;
+    this.#totalCount += offset;
   }
 }
 
