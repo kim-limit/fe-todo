@@ -1,4 +1,5 @@
 const { COMMAND, ERROR_MSG } = require("./constant");
+const { v4 } = require("uuid");
 
 const validate = (command) => {
   const splited = command.split("$");
@@ -16,6 +17,11 @@ const validate = (command) => {
   return { type: mainCommand, args: splited.slice(1) };
 };
 
+const getUniqueId = () => {
+  return v4();
+};
+
 module.exports = {
   validate,
+  getUniqueId,
 };
