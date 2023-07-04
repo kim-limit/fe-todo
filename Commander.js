@@ -46,7 +46,29 @@ class Commander {
 
   #add(args) {}
 
-  #update(args) {}
+  #update(args) {
+    if (args.length !== 2) {
+      throw Error(ERROR_MSG.WRONG_ARGS);
+    }
+
+    const [id, status] = args;
+
+    if (!STATUS[status.toUpperCase()]) {
+      throw Error(ERROR_MSG.NOT_EXIST_STATUS);
+    }
+
+    if (!this.#checkIdExist(id)) {
+      throw Error(ERROR_MSG.NOT_EXIST_ID);
+    }
+
+    const todo = this.#todos.get(id);
+
+    todo.status = status;
+
+    console.log(`${todo.name} ${status}으로 상태가 변경됐습니다.`);
+
+    this.#printAll();
+  }
 
   #delete(args) {
     if (args.length !== 1) {
