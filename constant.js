@@ -26,6 +26,7 @@ const ERROR_MSG = freeze({
   NOT_EXIST_SUB_COMMAND: "show는 all과 todo만 사용가능합니다.",
   NOT_EXIST_ID: "없는 id 입니다.",
   NOT_EXIST_STATUS: "없는 상태입니다.",
+  WRONG_ARGS: "인자가 정확하지 않습니다",
 });
 
 module.exports = {
