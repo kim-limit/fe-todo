@@ -48,7 +48,26 @@ class Commander {
 
   #update(args) {}
 
-  #delete(args) {}
+  #delete(args) {
+    if (args.length !== 1) {
+      throw Error(ERROR_MSG.WRONG_ARGS);
+    }
+
+    const id = args[0];
+
+    if (!this.#checkIdExist(id)) {
+      throw Error(ERROR_MSG.NOT_EXIST_ID);
+    }
+
+    const todo = this.#todos.get(id);
+
+    console.log(`${todo.name} (${todo.status})가 목록에서 삭제됐습니다.`);
+
+    this.#updateCount(todo.status, -1);
+    this.#todos.delete(id);
+
+    this.#printAll();
+  }
 
   #show(args) {
     const subCommand = args[0];
