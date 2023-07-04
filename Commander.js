@@ -30,27 +30,29 @@ class Commander {
 
     switch (type) {
       case COMMAND.SHOW:
-        this.#show(args[0]);
+        this.#show(args);
         break;
       case COMMAND.ADD:
-        this.#add(args[0], args[1]);
+        this.#add(args);
         break;
       case COMMAND.UPDATE:
-        this.#update(args[0], args[1]);
+        this.#update(args);
         break;
       case COMMAND.DELETE:
-        this.#delete(args[0]);
+        this.#delete(args);
         break;
     }
   }
 
-  #add(name, tags) {}
+  #add(args) {}
 
-  #update(id, status) {}
+  #update(args) {}
 
-  #delete(id) {}
+  #delete(args) {}
 
-  #show(subCommand) {
+  #show(args) {
+    const subCommand = args[0];
+
     const uppered = subCommand.toUpperCase();
     if (!SHOW_SUB_COMMAND[uppered]) {
       throw Error(ERROR_MSG.NOT_EXIST_SUB_COMMAND);
