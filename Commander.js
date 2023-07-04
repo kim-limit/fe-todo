@@ -17,7 +17,20 @@ class Commander {
   #totalCount;
 
   constructor() {
-    this.#todos = [];
+    this.#todos = [
+      {
+        name: "자바스크립트 공부하기",
+        tags: ["programming", "javascript"],
+        status: "todo",
+        id: 12123123,
+      },
+      {
+        name: "그림 그리기",
+        tags: ["picture", "favorite"],
+        status: "doing",
+        id: 312323,
+      },
+    ];
     this.#totalCount = 0;
     this.#counts = {
       [STATUS.TODO]: 0,
@@ -28,7 +41,6 @@ class Commander {
 
   play(command) {
     const { type, args } = validate(command);
-    console.log(type, args);
 
     switch (type) {
       case COMMAND.SHOW:
@@ -68,12 +80,21 @@ class Commander {
 
   #printAll() {
     const { TODO, DOING, DONE } = this.#counts;
+
     console.log(
       `현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개`
     );
   }
 
-  #printTodo() {}
+  #printTodo() {
+    console.log(
+      this.#todos.reduce((acc, curr, idx) => {
+        const { id, name } = curr;
+
+        return acc + `${idx}. ${name} (${id}번)\n`;
+      }, `todo리스트 : 총 ${this.#totalCount}건\n`)
+    );
+  }
 }
 
 module.exports = Commander;
