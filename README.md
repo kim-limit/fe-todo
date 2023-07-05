@@ -17,10 +17,10 @@ node grade.js
 - [ ] show
   - all은 현재 모든 리스트 상태 전체 출력
   - 모든 리스트 출력 (총 개수, 각각의 name, id)
-- [ ] add
+- [x] add
   - name, tag(리스트로 받을 수 있다) 입력시 todo에 추기.
   - tag는 옵션
-- [ ] delete
+- [x] delete
   - id 번호를 통한 삭제.
   - 만약 없는 아이디거나 입력 안할시 예외 처리.
 - [ ] update
@@ -35,9 +35,9 @@ node grade.js
   - `ex) 현재상태 :  todo: n개, doing: m개, done: k개`
 - [ ] show$todo 인 경우
   - `ex) todo리스트 :  총 n건 : '{name}, {uuid}번' , '{name}, {uuid}번', '{name}, {uuid}번'`
-- [ ] add
+- [x] add
   - `ex) {name} 1개가 추가됐습니다.(id : {uuid})`
-- [ ] delete
+- [x] delete
   - `ex) {name} todo가 목록에서 삭제됐습니다`
 - [ ] update
   - `ex) {name}가 {status}으로 상태가 변경됐습니다`
