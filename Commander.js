@@ -1,5 +1,5 @@
-const { COMMAND, STATUS, SHOW_SUB_COMMAND, ERROR_MSG } = require("./constant");
-const { validate, getUniqueId, parseArrayString } = require("./utils");
+import { COMMAND, STATUS, SHOW_SUB_COMMAND, ERROR_MSG } from "./constant.js";
+import { validate, getUniqueId, parseArrayString } from "./utils.js";
 
 /**
  * @typedef TodoItem
@@ -164,4 +164,4 @@ class Commander {
   }
 }
 
-module.exports = Commander;
+export default Commander;

@@ -5,6 +5,7 @@
   "repository": "https://github.com/kim-limit/fe-todo.git",
   "author": "kim-limit",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "chalk": "^5.3.0",
     "uuid": "9.0.0"

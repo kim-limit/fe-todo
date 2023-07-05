@@ -1,5 +1,5 @@
-const Commander = require("./Commander");
-const input = require("./input");
+import Commander from "./Commander.js";
+import input from "./input.js";
 
 const run = () => {
   const Cmd = new Commander();

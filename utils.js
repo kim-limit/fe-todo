@@ -1,7 +1,7 @@
-const { COMMAND, ERROR_MSG, REGEX_STRING_ARRAY } = require("./constant");
-const { v4 } = require("uuid");
+import { COMMAND, ERROR_MSG, REGEX_STRING_ARRAY } from "./constant.js";
+import { v4 } from "uuid";
 
-const validate = (command) => {
+export const validate = (command) => {
   const splited = command.split("$");
 
   if (splited.length <= 1) {
@@ -17,20 +17,14 @@ const validate = (command) => {
   return { type: mainCommand, args: splited.slice(1) };
 };
 
-const getUniqueId = () => {
+export const getUniqueId = () => {
   return v4();
 };
 
-const parseArrayString = (arrayString) => {
+export const parseArrayString = (arrayString) => {
   if (!REGEX_STRING_ARRAY.test(arrayString)) {
     throw Error(ERROR_MSG.WRONG_TAGS);
   }
 
   return JSON.parse(arrayString);
-};
-
-module.exports = {
-  validate,
-  getUniqueId,
-  parseArrayString,
 };

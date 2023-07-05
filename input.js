@@ -1,4 +1,6 @@
-const rl = require("readline").createInterface({
+import { createInterface } from "readline";
+
+const rl = createInterface({
   input: process.stdin,
   output: process.stdout,
 });
@@ -22,4 +24,4 @@ const input = (callback) => {
   }).on("close", () => process.exit(0));
 };
 
-module.exports = input;
+export default input;
