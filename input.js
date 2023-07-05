@@ -16,7 +16,7 @@ const input = (callback) => {
     try {
       callback(command);
     } catch (err) {
-      console.error(err.message);
+      console.error(`Error: ${err.message}\n`);
     }
     rl.prompt();
   }).on("close", () => process.exit(0));
