@@ -1,4 +1,4 @@
-const { COMMAND, ERROR_MSG } = require("./constant");
+const { COMMAND, ERROR_MSG, REGEX_STRING_ARRAY } = require("./constant");
 const { v4 } = require("uuid");
 
 const validate = (command) => {
@@ -21,7 +21,16 @@ const getUniqueId = () => {
   return v4();
 };
 
+const parseArrayString = (arrayString) => {
+  if (!REGEX_STRING_ARRAY.test()) {
+    throw Error(ERROR_MSG.WRONG_TAGS);
+  }
+
+  return JSON.parse(arrayString);
+};
+
 module.exports = {
   validate,
   getUniqueId,
+  parseArrayString,
 };

@@ -27,11 +27,15 @@ const ERROR_MSG = freeze({
   NOT_EXIST_ID: "없는 id 입니다.",
   NOT_EXIST_STATUS: "없는 상태입니다.",
   WRONG_ARGS: "인자가 정확하지 않습니다",
+  WRONG_TAGS: "태그 형식이 적절하지 않습니다.",
 });
+
+const REGEX_STRING_ARRAY = /^\s*\[\s*("[^"]+"\s*,\s*)*"[^"]*"\s*\]\s*$/;
 
 module.exports = {
   STATUS,
   COMMAND,
   SHOW_SUB_COMMAND,
   ERROR_MSG,
+  REGEX_STRING_ARRAY,
 };
