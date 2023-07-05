@@ -1,5 +1,5 @@
 const { COMMAND, STATUS, SHOW_SUB_COMMAND, ERROR_MSG } = require("./constant");
-const { validate } = require("./utils");
+const { validate, getUniqueId, parseArrayString } = require("./utils");
 
 /**
  * @typedef TodoItem
@@ -25,6 +25,9 @@ class Commander {
     };
   }
 
+  // 1. add 구현
+  // 2. print all 리팩토링
+  // 3.
   play(command) {
     const { type, args } = validate(command);
 
@@ -44,7 +47,28 @@ class Commander {
     }
   }
 
-  #add(args) {}
+  #add(args) {
+    if (args.length < 1 || args.length > 2) {
+      throw Error(ERROR_MSG.WRONG_ARGS);
+    }
+
+    const [name, tags] = args;
+
+    const todo = {
+      name,
+      tags: parseArrayString(tags),
+      status: STATUS.TODO,
+    };
+    const id = getUniqueId();
+
+    this.#todos.set(id, todo);
+
+    this.#updateCount(STATUS.TODO, 1);
+
+    console.log(`${name} 1개가 추가됐습니다. (id: ${id})`);
+
+    this.#printAll();
+  }
 
   #update(args) {
     if (args.length !== 2) {
@@ -116,6 +140,7 @@ class Commander {
   }
 
   #printTodo() {
+    // TODO: map -> array 변환후 reduce로 출력
     console.log(
       this.#todos.reduce((acc, curr, idx) => {
         const { id, name } = curr;
