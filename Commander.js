@@ -25,11 +25,12 @@ class Commander {
     };
   }
 
-  // 1. add 구현
-  // 2. print all 리팩토링
-  // 3.
   play(command) {
     const { type, args } = validate(command);
+
+    console.log(
+      "\n-------------------------------------------------------------"
+    );
 
     switch (type) {
       case COMMAND.SHOW:
@@ -44,6 +45,10 @@ class Commander {
       case COMMAND.DELETE:
         this.#delete(args);
         break;
+    }
+
+    if (type !== COMMAND.SHOW) {
+      this.#printAll();
     }
 
     console.log();
@@ -68,8 +73,6 @@ class Commander {
     this.#updateCount(STATUS.TODO, 1);
 
     console.log(`${name} 1개가 추가됐습니다. (id: ${id})`);
-
-    this.#printAll();
   }
 
   #update(args) {
@@ -94,8 +97,6 @@ class Commander {
     this.#updateCount(todo.status, 1);
 
     console.log(`${todo.name} ${status}으로 상태가 변경됐습니다.`);
-
-    this.#printAll();
   }
 
   #delete(args) {
@@ -115,8 +116,6 @@ class Commander {
 
     this.#updateCount(todo.status, -1);
     this.#todos.delete(id);
-
-    this.#printAll();
   }
 
   #show(args) {
@@ -139,9 +138,7 @@ class Commander {
     const { TODO, DOING, DONE } = this.#counts;
 
     console.log(
-      `\n-------------------------------------------------------------\n` +
-        `현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개\n` +
-        `-------------------------------------------------------------\n`
+      `현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개`
     );
   }
 
