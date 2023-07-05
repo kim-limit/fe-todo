@@ -45,6 +45,8 @@ class Commander {
         this.#delete(args);
         break;
     }
+
+    console.log();
   }
 
   #add(args) {
@@ -87,7 +89,9 @@ class Commander {
 
     const todo = this.#todos.get(id);
 
-    todo.status = status;
+    this.#updateCount(todo.status, -1);
+    todo.status = status.toUpperCase();
+    this.#updateCount(todo.status, 1);
 
     console.log(`${todo.name} ${status}으로 상태가 변경됐습니다.`);
 
@@ -135,7 +139,9 @@ class Commander {
     const { TODO, DOING, DONE } = this.#counts;
 
     console.log(
-      `현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개`
+      `-------------------------------------------------------------\n` +
+        `현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개\n` +
+        `-------------------------------------------------------------\n`
     );
   }
 
