@@ -132,27 +132,28 @@ class Commander {
       return;
     }
 
-    this.#printTodo();
+    this.#printStatus(uppered);
   }
 
   #printAll() {
     const { TODO, DOING, DONE } = this.#counts;
 
     console.log(
-      `-------------------------------------------------------------\n` +
+      `\n-------------------------------------------------------------\n` +
         `현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개\n` +
         `-------------------------------------------------------------\n`
     );
   }
 
-  #printTodo() {
-    // TODO: map -> array 변환후 reduce로 출력
+  #printStatus(status) {
+    const filtered = [...this.#todos].filter(
+      ([_, item]) => item.status === status
+    );
     console.log(
-      this.#todos.reduce((acc, curr, idx) => {
-        const { id, name } = curr;
-
-        return acc + `${idx}. ${name} (${id}번)\n`;
-      }, `todo리스트 : 총 ${this.#totalCount}건\n`)
+      filtered.reduce(
+        (acc, [id, item], idx) => acc + `${idx}. ${item.name} (id: ${id})\n`,
+        `${status}리스트 : 총 ${filtered.length}건\n`
+      )
     );
   }
 

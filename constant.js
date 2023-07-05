@@ -17,7 +17,7 @@ const COMMAND = freeze({
 
 const SHOW_SUB_COMMAND = freeze({
   ALL: "ALL",
-  TODO: "TODO",
+  ...STATUS,
 });
 
 const ERROR_MSG = freeze({
