@@ -22,7 +22,7 @@ const getUniqueId = () => {
 };
 
 const parseArrayString = (arrayString) => {
-  if (!REGEX_STRING_ARRAY.test()) {
+  if (!REGEX_STRING_ARRAY.test(arrayString)) {
     throw Error(ERROR_MSG.WRONG_TAGS);
   }
 

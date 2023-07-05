@@ -30,7 +30,7 @@ const ERROR_MSG = freeze({
   WRONG_TAGS: "태그 형식이 적절하지 않습니다.",
 });
 
-const REGEX_STRING_ARRAY = /^\s*\[\s*("[^"]+"\s*,\s*)*"[^"]*"\s*\]\s*$/;
+const REGEX_STRING_ARRAY = /^\s*\[\s*("[^"]+"\s*,\s*)*"[^"]*"\s*\]\s*$/g;
 
 module.exports = {
   STATUS,
