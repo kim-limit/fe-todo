@@ -1,12 +1,15 @@
 import { createInterface } from "readline";
 
+import { errorLog } from "./utils.js";
+
 const rl = createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
 const input = (callback) => {
-  rl.setPrompt("명령하세요(exit 입력시 종료): ");
+  rl.setPrompt(`-------------------------------------------------------------
+명령하세요(exit 입력시 종료): `);
   rl.prompt();
 
   rl.on("line", (command) => {
@@ -16,9 +19,10 @@ const input = (callback) => {
     }
 
     try {
+      console.log();
       callback(command);
     } catch (err) {
-      console.error(`Error: ${err.message}\n`);
+      errorLog(`error: ${err.message}\n`);
     }
     rl.prompt();
   }).on("close", () => process.exit(0));

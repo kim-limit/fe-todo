@@ -1,5 +1,11 @@
 import { COMMAND, STATUS, SHOW_SUB_COMMAND, ERROR_MSG } from "./constant.js";
-import { validate, getUniqueId, parseArrayString } from "./utils.js";
+import {
+  validate,
+  getUniqueId,
+  parseArrayString,
+  yellowLog,
+  dimLog,
+} from "./utils.js";
 
 /**
  * @typedef TodoItem
@@ -27,10 +33,6 @@ class Commander {
 
   play(command) {
     const { type, args } = validate(command);
-
-    console.log(
-      "\n-------------------------------------------------------------"
-    );
 
     switch (type) {
       case COMMAND.SHOW:
@@ -72,7 +74,7 @@ class Commander {
 
     this.#updateCount(STATUS.TODO, 1);
 
-    console.log(`${name} 1개가 추가됐습니다. (id: ${id})`);
+    dimLog(`${name} 1개가 추가됐습니다. (id: ${id})`);
   }
 
   #update(args) {
@@ -96,7 +98,7 @@ class Commander {
     todo.status = status.toUpperCase();
     this.#updateCount(todo.status, 1);
 
-    console.log(`${todo.name} ${status}으로 상태가 변경됐습니다.`);
+    dimLog(`${todo.name} ${status}으로 상태가 변경됐습니다.`);
   }
 
   #delete(args) {
@@ -112,7 +114,7 @@ class Commander {
 
     const todo = this.#todos.get(id);
 
-    console.log(`${todo.name} (${todo.status})가 목록에서 삭제됐습니다.`);
+    dimLog(`${todo.name} (${todo.status})가 목록에서 삭제됐습니다.`);
 
     this.#updateCount(todo.status, -1);
     this.#todos.delete(id);
@@ -137,9 +139,7 @@ class Commander {
   #printAll() {
     const { TODO, DOING, DONE } = this.#counts;
 
-    console.log(
-      `현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개`
-    );
+    yellowLog(`현재상태: todo: ${TODO}개, doing: ${DOING}개, done: ${DONE}개`);
   }
 
   #printStatus(status) {

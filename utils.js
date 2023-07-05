@@ -1,5 +1,7 @@
-import { COMMAND, ERROR_MSG, REGEX_STRING_ARRAY } from "./constant.js";
+import chalk from "chalk";
 import { v4 } from "uuid";
+
+import { COMMAND, ERROR_MSG, REGEX_STRING_ARRAY } from "./constant.js";
 
 export const validate = (command) => {
   const splited = command.split("$");
@@ -27,4 +29,16 @@ export const parseArrayString = (arrayString) => {
   }
 
   return JSON.parse(arrayString);
+};
+
+export const errorLog = (message) => {
+  console.log(chalk.bold.red(message));
+};
+
+export const yellowLog = (message) => {
+  console.log(chalk.bold.inverse.yellow(message));
+};
+
+export const dimLog = (message) => {
+  console.log(chalk.gray(message));
 };
